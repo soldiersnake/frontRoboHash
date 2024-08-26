@@ -39,8 +39,8 @@ export const UserDetails = () => {
   };
 
   //mensajes condicionales, por espera o error
-  if (loading) return <p style={{height: '600px'}}>Loading user details...</p>;
-  if (error) return <p style={{height: '600px'}}>{error}</p>;
+  if (loading) return <p style={{height: '500px'}}>Loading user details...</p>;
+  if (error) return <p style={{height: '500px'}}>{error}</p>;
 
   return (
     <>
