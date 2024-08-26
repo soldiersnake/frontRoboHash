@@ -92,11 +92,12 @@ Para ejecutar las pruebas unitarias con Jest y React Testing Library, utiliza el
 
 ## API
 La aplicación utiliza la API de random-data-api para obtener los datos de los usuarios. La API se consulta usando axios.
-    ```
+```
    const response = await axios.get(
   `https://random-data-api.com/api/v2/users?size=100&page=${page}`
     );
-   ```
+
+```
 
 ## Despliegue en Producción
 
