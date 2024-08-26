@@ -10,7 +10,7 @@ export const Requerimientos = () => {
             <div className="imagen-wrap">
               <img
                 src={imagen}
-                alt="Paisaje"
+                alt="Imagen Robot"
               />
             </div>
             <h1 className="subheader">Instrucciones prueba tecnica</h1>
