@@ -94,7 +94,7 @@ Para ejecutar las pruebas unitarias con Jest y React Testing Library, utiliza el
 La aplicación utiliza la API de random-data-api para obtener los datos de los usuarios. La API se consulta usando axios.
 ```
    const response = await axios.get(
-  `https://random-data-api.com/api/v2/users?size=100&page=${page}`
+        `https://random-data-api.com/api/v2/users?size=100&page=${page}`
     );
 
 ```
@@ -107,13 +107,13 @@ La aplicacion esta desplegada en Netlify, su URL es:
 ## Contribuciones
 Si deseas contribuir a este proyecto, puedes hacer lo siguiente:
 
-Haz un fork del repositorio.
-Crea una rama con tu feature/fix (git checkout -b mi-nueva-feature).
-Haz commit de tus cambios (git commit -m 'Agregar nueva feature').
-Haz push a la rama (git push origin mi-nueva-feature).
-Abre un Pull Request.
+1. Haz un fork del repositorio.
+2. Crea una rama con tu feature/fix (git checkout -b mi-nueva-feature).
+3. Haz commit de tus cambios (git commit -m 'Agregar nueva feature').
+4. Haz push a la rama (git push origin mi-nueva-feature).
+5. Abre un Pull Request.
 
 ## Autor
-###Mariano Damian Macias Gandulfo###
+### Mariano Damian Macias Gandulfo ###
 
 Este proyecto fue creado como parte de una prueba técnica.
