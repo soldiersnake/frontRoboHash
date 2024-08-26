@@ -25,7 +25,7 @@ const UserGrid = () => {
         // Si obtenemos un 429, espera y reintenta
         const waitTime = (retryCount + 1) * 2000; // Tiempo de espera creciente
         console.warn(`Error 429, retrying after ${waitTime / 1000} seconds...`);
-        setTimeout(() => fetchUsers(retryCount + 1), waitTime);  //TImer para preguntar nuevamente si hay error
+        setTimeout(() => fetchUsers(retryCount + 1), waitTime); //TImer para preguntar nuevamente si hay error
       } else {
         console.error("Error fetching users:", error);
         setHasMore(false); // Detenemos la carga infinita si hay un error constante
@@ -50,7 +50,7 @@ const UserGrid = () => {
   };
 
   return (
-    <InfiniteScroll  //libreria de scroll infinito
+    <InfiniteScroll //libreria de scroll infinito
       dataLength={users.length}
       next={fetchMoreData}
       hasMore={hasMore}
@@ -59,17 +59,21 @@ const UserGrid = () => {
     >
       {/* Listado de los usuarios que traemos de la API */}
       <div className="user-grid">
-        {users.map((user, index) => (
-          <>
-            <div key={index} className="user-card">
-              <img src={`https://robohash.org/${user.username}`} alt={user.first_name} />
-              <h3>{user.first_name} {user.last_name}</h3>
-              <p>Email: {user.email}</p>
-              <p>Phone: {user.phone_number}</p>
-                {/* llamo al evento handleViewDetails para enviar el usuario por estado de navegacion */}
-                <button className="btn" onClick={() => handleViewDetails(user)}>Ver Mas</button>
-            </div>
-          </>
+        {users.map((user) => (
+          <div key={user.id} className="user-card">
+            <img
+              src={`https://robohash.org/${user.username}`}
+              alt={user.first_name}
+            />
+            <h3>
+              {user.first_name} {user.last_name}
+            </h3>
+            <p>Email: {user.email}</p>
+            <p>Phone: {user.phone_number}</p>
+            <button className="btn" onClick={() => handleViewDetails(user)}>
+              Ver Mas
+            </button>
+          </div>
         ))}
       </div>
     </InfiniteScroll>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const Header = () => {
   const [logoUrl, setLogoUrl] = useState("");
@@ -27,13 +27,15 @@ export const Header = () => {
         <div className="center">
           {/* <!-- LOGO --> */}
           <div id="logo">
-            <img
-              src={logoUrl}
-              className="app-logo"
-              alt="Logo"
-              onClick={updateLogo} // Actualiza la imagen al hacer clic
-              style={{ cursor: "pointer" }} // Cambia el cursor para indicar que es clicable
-            />
+            <Link to='/'>
+              <img
+                src={logoUrl}
+                className="app-logo"
+                alt="Logo"
+                onClick={updateLogo} // Actualiza la imagen al hacer clic
+                style={{ cursor: "pointer" }} // Cambia el cursor para indicar que es clicable
+              />
+            </Link>
             <span id="brand">
               <strong>Macias </strong>Mariano
             </span>
