@@ -12,9 +12,9 @@ const UserGrid = () => {
   const fetchUsers = async (retryCount = 0) => {
     try {
       const response = await axios.get(
-        `https://random-data-api.com/api/v2/users?size=9&page=${page}`
+        `https://random-data-api.com/api/v2/users?size=100&page=${page}`
       );
-      setUsers((prevUsers) => [...prevUsers, ...response.data]);
+      setUsers((prevUsers) => [...prevUsers, ...response.data]); //se almacenan los nuevos usuarios conservando los anteriores
 
       // Simula cuando ya no hay más datos para cargar
       if (response.data.length === 0) {
@@ -25,7 +25,7 @@ const UserGrid = () => {
         // Si obtenemos un 429, espera y reintenta
         const waitTime = (retryCount + 1) * 2000; // Tiempo de espera creciente
         console.warn(`Error 429, retrying after ${waitTime / 1000} seconds...`);
-        setTimeout(() => fetchUsers(retryCount + 1), waitTime);
+        setTimeout(() => fetchUsers(retryCount + 1), waitTime);  //TImer para preguntar nuevamente si hay error
       } else {
         console.error("Error fetching users:", error);
         setHasMore(false); // Detenemos la carga infinita si hay un error constante
@@ -43,8 +43,9 @@ const UserGrid = () => {
     setPage(page + 1);
   };
 
+  // Se envian los datos por estado de navegacion
   const handleViewDetails = (user) => {
-    // Navega a la ruta del detalle del usuario, pasando el usuario como estado
+    // Navega a la ruta del detalle del usuario
     navigate(`/user/${user.id}`, { state: { user } });
   };
 
@@ -65,6 +66,7 @@ const UserGrid = () => {
               <h3>{user.first_name} {user.last_name}</h3>
               <p>Email: {user.email}</p>
               <p>Phone: {user.phone_number}</p>
+                {/* llamo al evento handleViewDetails para enviar el usuario por estado de navegacion */}
                 <button className="btn" onClick={() => handleViewDetails(user)}>Ver Mas</button>
             </div>
           </>
