@@ -1,70 +1,118 @@
-# Getting Started with Create React App
+# Prueba Técnica - ReactJS UserGrid Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Descripción
 
-## Available Scripts
+Este proyecto es una aplicación desarrollada en ReactJS que consume datos de usuarios desde la API de [random-data-api](https://random-data-api.com/api/v2/users) y los muestra en una cuadrícula de tres columnas. Implementa scroll infinito para cargar más usuarios dinámicamente a medida que el usuario se desplaza hacia abajo. Además, cada usuario puede ser visto en detalle al hacer clic en el botón "Ver Más". La aplicación también cuenta con navegación usando `react-router-dom`.
 
-In the project directory, you can run:
+## Funcionalidades
 
-### `npm start`
+1. **Visualización de usuarios en cuadrícula:** Los usuarios se muestran en una cuadrícula de tres columnas con información básica como nombre, correo electrónico y teléfono.
+2. **Scroll infinito:** Los usuarios adicionales se cargan automáticamente a medida que el usuario se desplaza hacia abajo en la página.
+3. **Detalle de usuario:** Al hacer clic en un usuario, se navega a una página de detalles donde se muestra información más completa del usuario seleccionado.
+4. **Simulación de API:** Los datos de los usuarios son obtenidos de [random-data-api](https://random-data-api.com/api/v2/users).
+5. **Pruebas:** Se implementaron pruebas unitarias utilizando `React Testing Library` y `Jest` para validar el correcto funcionamiento de las funcionalidades clave.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tecnologías Utilizadas
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **React 18.3.1**
+- **React Router DOM 6.26.1**
+- **Axios 1.7.5**
+- **React Infinite Scroll Component 6.1.0**
+- **Jest y React Testing Library** para las pruebas unitarias.
 
-### `npm test`
+## Instalación
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para instalar y ejecutar la aplicación localmente, sigue estos pasos:
 
-### `npm run build`
+1. **Clonar el repositorio:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```
+   https://github.com/soldiersnake/frontRoboHash.git
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Navegar al directorio del proyecto:**
+    ```
+   cd frontRoboHash
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Instalar las dependencias:**
+    ```
+   npm install
+   ```
 
-### `npm run eject`
+4. **Ejecutar la aplicación en modo de desarrollo:**
+    ```
+   npm start
+   ```
+Esto abrirá la aplicación en http://localhost:3000/
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+5. **Compilar para producción:**
+    ```
+   npm build
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Ejecución de Pruebas
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Para ejecutar las pruebas unitarias con Jest y React Testing Library, utiliza el siguiente comando:
+   ```
+   npm test
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Estructura del Proyecto
 
-## Learn More
+    ├── public
+    │   ├── index.html
+    │   └── robots.txt
+    ├── src
+    │   ├── assets
+    │   ├── components
+    │   │   ├── Footer.js
+    │   │   ├── Header.js
+    │   │   ├── Home.js
+    │   │   ├── Requerimientos.js
+    │   │   ├── Routers.js
+    │   │   ├── Sidebar.js
+    │   │   ├── Slider.js
+    │   │   ├── UserDetails.js
+    │   │   ├── UserGrid.js
+    │   ├── App.js
+    │   ├── index.js
+    │   ├── App.test.js
+    │   └── setupTests.js
+    ├── .env
+    ├── package.json
+    ├── README.md
+    └── yarn.lock
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Componentes Clave
+- UserGrid.js: Maneja la visualización de usuarios y la implementación del scroll infinito.
+- UserDetails.js: Muestra los detalles del usuario seleccionado.
+- Routers.js: Configura las rutas de la aplicación para la navegación.
+- App.js: Punto de entrada principal que organiza los componentes.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## API
+La aplicación utiliza la API de random-data-api para obtener los datos de los usuarios. La API se consulta usando axios.
+    ```
+   const response = await axios.get(
+  `https://random-data-api.com/api/v2/users?size=100&page=${page}`
+    );
+   ```
 
-### Code Splitting
+## Despliegue en Producción
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+La aplicacion esta desplegada en Netlify, su URL es:
+[Netlify RoboHash app](https://marianomacias-robohash.netlify.app/).
 
-### Analyzing the Bundle Size
+## Contribuciones
+Si deseas contribuir a este proyecto, puedes hacer lo siguiente:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Haz un fork del repositorio.
+Crea una rama con tu feature/fix (git checkout -b mi-nueva-feature).
+Haz commit de tus cambios (git commit -m 'Agregar nueva feature').
+Haz push a la rama (git push origin mi-nueva-feature).
+Abre un Pull Request.
 
-### Making a Progressive Web App
+## Autor
+###Mariano Damian Macias Gandulfo###
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Este proyecto fue creado como parte de una prueba técnica.
