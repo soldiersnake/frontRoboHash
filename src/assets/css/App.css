@@ -332,7 +332,12 @@ textarea{
   padding: 10px;
 }
 
+.article-detail{
+  margin-top: 5%;
+}
+
 .article-detail .imagen-wrap{
+  
   float: none;
   width: 100%;
   height: 300px;
@@ -524,6 +529,7 @@ textarea{
   margin: auto;
   max-width: 60%;
   margin-top: 2%;
+  margin-bottom: 5%;
   background-color: #fff;
   padding: 20px;
   border-radius: 12px;

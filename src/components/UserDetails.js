@@ -1,51 +1,43 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 
 export const UserDetails = () => {
+  const location = useLocation();
+
   const { id } = useParams(); // Obtén el id de los parámetros de la URL
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(location.state?.user || null);
+  const [loading, setLoading] = useState(!location.state?.user);
   const [error, setError] = useState(null);
 
-  const fetchUser = async (retryCount = 0) => {
-    try {
-      // Realiza una solicitud a la API con el ID específico del usuario
-      const response = await axios.get(
-        `https://random-data-api.com/api/v2/users/${id}`
-      );
-      setUser(response.data); // Guarda los datos del usuario en el estado
-      setLoading(false); // Marca la carga como completa
-    } catch (error) {
-      if (error.response && error.response.status === 429 && retryCount < 5) {
-        // Si obtenemos un 429, espera y reintenta
-        const waitTime = (retryCount + 1) * 2000;
-        console.warn(`Error 429, retrying after ${waitTime / 1000} seconds...`);
-        setTimeout(() => fetchUser(retryCount + 1), waitTime);
-      } else {
-        console.error("Error fetching user:", error);
-        setError("Error fetching user"); // Marca un error si falla repetidamente
-        setLoading(false); // Detenemos la carga
-      }
-    }
-  };
-
   useEffect(() => {
-    fetchUser(); // Llama a la función para obtener los detalles del usuario
-  }, [id]); // Se ejecuta cada vez que cambia el id
+    if (!user) {
+      const fetchUser = async () => {
+        try {
+          const response = await axios.get(
+            `https://random-data-api.com/api/v2/users/${id}`
+          );
+          setUser(response.data);
+          setLoading(false);
+        } catch (error) {
+          setError("Error fetching user");
+          setLoading(false);
+        }
+      };
 
-  const deleteUser = () => {
-    setUser(null);
-  };
+      fetchUser();
+    }
+  }, [id, user]);
 
   //mensajes condicionales, por espera o error
-  if (loading) return <p style={{height: '500px'}}>Loading user details...</p>;
-  if (error) return <p style={{height: '500px'}}>{error}</p>;
+  if (loading)
+    return <p style={{ height: "500px" }}>Loading user details...</p>;
+  if (error) return <p style={{ height: "500px" }}>{error}</p>;
 
   return (
     <>
       <div className="center">
-        <section id="content" style={{ width: "100%" }}>
+        <section id="content" style={{ width: "100%", float: "none" }}>
           <article className="article-item article-detail">
             <div className="user-grid-details">
               {user && (
@@ -69,18 +61,12 @@ export const UserDetails = () => {
                     DOB: {new Date(user.date_of_birth).toLocaleDateString()}
                   </p>
                   <Link to={`/`}>
-                    <button onClick={deleteUser} className="btn">
+                    <button className="btn">
                       Volver
                     </button>
                   </Link>
                 </div>
               )}
-              {/* Es una aclaracion ya que la api siempre arroja users random */}
-              <p className="user-alert">
-                <span>Advertencia: </span>
-                El usuario no corresponde al seleccionado, ya que siempre es
-                información aleatoria que llega desde la API.
-              </p>
             </div>
           </article>
           <div className="clearfix"></div>

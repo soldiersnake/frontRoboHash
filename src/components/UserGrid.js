@@ -1,12 +1,13 @@
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UserGrid = () => {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const navigate = useNavigate();
 
   const fetchUsers = async (retryCount = 0) => {
     try {
@@ -42,6 +43,11 @@ const UserGrid = () => {
     setPage(page + 1);
   };
 
+  const handleViewDetails = (user) => {
+    // Navega a la ruta del detalle del usuario, pasando el usuario como estado
+    navigate(`/user/${user.id}`, { state: { user } });
+  };
+
   return (
     <InfiniteScroll  //libreria de scroll infinito
       dataLength={users.length}
@@ -59,9 +65,7 @@ const UserGrid = () => {
               <h3>{user.first_name} {user.last_name}</h3>
               <p>Email: {user.email}</p>
               <p>Phone: {user.phone_number}</p>
-              <Link to={`/user/${user.id}`}>
-                <button className="btn">Ver Mas</button>
-              </Link>
+                <button className="btn" onClick={() => handleViewDetails(user)}>Ver Mas</button>
             </div>
           </>
         ))}
