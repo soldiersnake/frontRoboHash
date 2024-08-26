@@ -32,22 +32,25 @@ const UserGrid = () => {
     }
   };
 
+  //llamamos a la funcion de consulta a la api, cada vez que pasamos la pagina
   useEffect(() => {
     fetchUsers();
   }, [page]);
 
+  // pasamos de pagina al finalizar el scroll por lo tanto se realizara otra solicitud a la API
   const fetchMoreData = () => {
     setPage(page + 1);
   };
 
   return (
-    <InfiniteScroll
+    <InfiniteScroll  //libreria de scroll infinito
       dataLength={users.length}
       next={fetchMoreData}
       hasMore={hasMore}
       loader={<h4>Loading...</h4>}
       endMessage={<p>No more users to load</p>}
     >
+      {/* Listado de los usuarios que traemos de la API */}
       <div className="user-grid">
         {users.map((user, index) => (
           <>

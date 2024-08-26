@@ -9,7 +9,7 @@ export const Routers = () => {
   const location = useLocation();
   return (
     <>
-      {
+      { // condicionamos la presencia del Slider, aparecera en todas las instancias excepto en la ruta del detalle de usuario
         location.pathname === '/' || location.pathname === '/requerimiento' ?
         <Slider /> : null
       }

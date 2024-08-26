@@ -6,6 +6,7 @@ export const Slider = () => {
     
   return (
     <>
+        {/* Segun el path de ruta que estemos cambiara el titulo del Slider */}
         <div id="slider" className={location.pathname === '/' ? "slider" : "slider-small"}>
             <h1 className={'typewriter-container'} style={{ fontFamily: "'Edu AU VIC WA NT Hand', cursive" }}>
               {location.pathname === '/'              ? 'Prueba Tecnica'

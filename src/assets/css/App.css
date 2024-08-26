@@ -516,7 +516,7 @@ textarea{
 .user-card-details {
   margin: auto;
   max-width: 60%;
-  margin-top: 5%;
+  margin-top: 2%;
   background-color: #fff;
   padding: 20px;
   border-radius: 12px;
@@ -535,7 +535,7 @@ textarea{
   width: 100px;
   height: 100px;
   object-fit: cover;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 }
 
 .user-email,
@@ -545,4 +545,13 @@ textarea{
 .user-birthday {
   font-size: 0.9em;
   color: #888;
+}
+.user-alert{
+  text-align: center;
+  align-items: center;
+  font-size: 0.8em;
+  color: red;
+}
+.user-alert span{
+  font-weight: 600;
 }

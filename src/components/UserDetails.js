@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 export const UserDetails = () => {
-  
   const { id } = useParams(); // Obtén el id de los parámetros de la URL
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -35,43 +34,55 @@ export const UserDetails = () => {
     fetchUser(); // Llama a la función para obtener los detalles del usuario
   }, [id]); // Se ejecuta cada vez que cambia el id
 
-  if (loading) return <p>Loading user details...</p>;
-  if (error) return <p>{error}</p>;
+  const deleteUser = () => {
+    setUser(null);
+  };
+
+  //mensajes condicionales, por espera o error
+  if (loading) return <p style={{height: '600px'}}>Loading user details...</p>;
+  if (error) return <p style={{height: '600px'}}>{error}</p>;
 
   return (
     <>
       <div className="center">
         <section id="content" style={{ width: "100%" }}>
-        <article className="article-item article-detail">
-
-          <div className="user-grid-details">
-            {user && (
-              <div className="user-card-details">
-                <img
-                  className="profile-img-details"
-                  src={`https://robohash.org/${user.username}`}
-                  alt={user.first_name}
-                />
-                <h3>
-                  {user.first_name} {user.last_name}
-                </h3>
-                <p className="user-email">Email: {user.email}</p>
-                <p className="user-phone">Phone: {user.phone_number}</p>
-                <p className="user-address">
-                  Address: {user.address.street_address}, {user.address.city},{" "}
-                  {user.address.state}
-                </p>
-                <p className="user-job">Job: {user.employment.title}</p>
-                <p className="user-birthday">
-                  DOB: {new Date(user.date_of_birth).toLocaleDateString()}
-                </p>
-                <Link to={`/`}>
-                  <button className="btn">Volver</button>
-                </Link>
-              </div>
-            )}
-          </div>
-        </article>
+          <article className="article-item article-detail">
+            <div className="user-grid-details">
+              {user && (
+                <div className="user-card-details">
+                  <img
+                    className="profile-img-details"
+                    src={`https://robohash.org/${user.username}`} //la imagen siempre es aleatorea
+                    alt={user.first_name}
+                  />
+                  <h3>
+                    {user.first_name} {user.last_name}
+                  </h3>
+                  <p className="user-email">Email: {user.email}</p>
+                  <p className="user-phone">Phone: {user.phone_number}</p>
+                  <p className="user-address">
+                    Address: {user.address.street_address}, {user.address.city},{" "}
+                    {user.address.state}
+                  </p>
+                  <p className="user-job">Job: {user.employment.title}</p>
+                  <p className="user-birthday">
+                    DOB: {new Date(user.date_of_birth).toLocaleDateString()}
+                  </p>
+                  <Link to={`/`}>
+                    <button onClick={deleteUser} className="btn">
+                      Volver
+                    </button>
+                  </Link>
+                </div>
+              )}
+              {/* Es una aclaracion ya que la api siempre arroja users random */}
+              <p className="user-alert">
+                <span>Advertencia: </span>
+                El usuario no corresponde al seleccionado, ya que siempre es
+                información aleatoria que llega desde la API.
+              </p>
+            </div>
+          </article>
           <div className="clearfix"></div>
         </section>
       </div>
